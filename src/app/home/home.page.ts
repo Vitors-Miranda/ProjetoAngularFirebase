@@ -6,15 +6,24 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
+  isLoading : boolean = false
   constructor() {
     this.getData();
   }
 
   getData(){
-    fetch('http://localhost/api/usuario/listar-todos')
-    // .then(T => T.json())
-    .then(console.log)
+    fetch('http://localhost/API_Fatec/index.php')
+    .then(response => response.json())
+    .then (dados => {
+      return dados
+    })
+    .catch (erro => {
+      console.log(erro)
+    })
+    .finally(()=>{
+      console.log("Request finished")
+      this.isLoading = true
+    })
   }
 
 }
