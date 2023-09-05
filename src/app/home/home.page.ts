@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticateService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -6,15 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
-  constructor() {
-    this.getData();
+  habilidades = []
+  constructor
+  (
+    private _authenticate: AuthenticateService
+  ) 
+  {}
+  criarConta(dados: any){
+    this._authenticate.register(dados.email, dados.password)
   }
-
-  getData(){
-    fetch('http://localhost/api/usuario/listar-todos')
-    // .then(T => T.json())
-    .then(console.log)
+  realizarLogin(dados: any){
+    
   }
-
 }

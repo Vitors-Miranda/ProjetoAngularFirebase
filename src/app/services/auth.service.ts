@@ -28,7 +28,7 @@ export class AuthenticateService {
         this.isLoading = true;
         createUserWithEmailAndPassword(this.auth, email, password)
         .then(() => {
-            this.redirectTo('/login'); // redireciona para a página de login (escolha a página desejada)
+            this._message.show("Conta criada com sucesso!")
         })
         .catch((_: any) => {
             this.showErro(_, email, password);
