@@ -1,22 +1,174 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      <ion-button id="open-modal2" (click) = "limparForm()">
+        Inserir Funcionário
+      </ion-button>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-row>
+    <ion-col>
+      <ion-list>
+        <ion-item>
+          Nome
+        </ion-item>
+        <ng-container *ngFor="let funcionario of this.funcionarios">
+          <ion-item>
+            <ion-label>
+              {{funcionario.Nome}} - {{ funcionario.Cargo }}
+            </ion-label>
+            <ion-button color="danger" (click)="remover(funcionario.CodFun)">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+            <ion-button id="open-modal" (click)="pegarDados(funcionario.CodFun)">
+              <ion-icon name="pencil-outline"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ng-container>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Fechar</ion-button>
+          </ion-buttons>
+          <ion-title>Editar Funcionario</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-item>
+            <ion-label position="stacked">Nome</ion-label>
+            <ion-input type="text" placeholder="Nome" [(ngModel)]="form.nome"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Sobrenome</ion-label>
+            <ion-input type="text" placeholder="Sobrenome" [(ngModel)]="form.sobrenome"></ion-input>
+          </ion-item>
+        </ion-item>
+        <ion-item>
+          <ion-item>
+            <ion-label position="stacked">Cargo</ion-label>
+            <ion-input type="text" placeholder="Cargo" [(ngModel)]="form.cargo"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Data de nascimento</ion-label>
+            <ion-input type="date" placeholder="Data" [(ngModel)]="form.data"></ion-input>
+          </ion-item>
+        </ion-item>
+        <ion-item>
+          <ion-item>
+            <ion-label position="stacked">Endereco</ion-label>
+            <ion-input type="text" placeholder="Endereco" [(ngModel)]="form.endereco"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Cidade</ion-label>
+            <ion-input type="text" placeholder="Cidade" [(ngModel)]="form.cidade"></ion-input>
+          </ion-item>
+        </ion-item>
+        <ion-item>
+          <ion-item>
+            <ion-label position="stacked">Cep</ion-label>
+            <ion-input type="text" placeholder="Cep" [(ngModel)]="form.cep"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Pais</ion-label>
+            <ion-input type="text" placeholder="Pais" [(ngModel)]="form.pais"></ion-input>
+          </ion-item>
+        </ion-item>
+        <ion-item>
+          <ion-item>
+            <ion-label position="stacked">Fone</ion-label>
+            <ion-input type="text" placeholder="Fone" [(ngModel)]="form.fone"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Salario</ion-label>
+            <ion-input type="text" placeholder="Salario" [(ngModel)]="form.salario"></ion-input>
+          </ion-item>
+        </ion-item>
+        <ion-item>
+          <ion-button (click) = "atualizarFuncionario()">
+            Salvar
+          </ion-button>
+        </ion-item>
 
-  <div id="container">
-    <h3>Projeto com Bootstrap e Ionic!</h3>
-    <hr>
-    <p>Componentes Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components"> - UI Components</a></p>
-    <p>Componentes Bootstrap <a target="_blank" rel="noopener noreferrer" href="https://getbootstrap.com/docs/5.3/components/buttons/"> - UI Components</a></p>
-  </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  <ion-modal trigger="open-modal2" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Fechar</ion-button>
+          </ion-buttons>
+          <ion-title>Cadastrar Funcionario</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-item>
+            <ion-label position="stacked">Nome</ion-label>
+            <ion-input type="text" placeholder="Nome" [(ngModel)]="form.nome"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Sobrenome</ion-label>
+            <ion-input type="text" placeholder="Sobrenome" [(ngModel)]="form.sobrenome"></ion-input>
+          </ion-item>
+        </ion-item>
+        <ion-item>
+          <ion-item>
+            <ion-label position="stacked">Cargo</ion-label>
+            <ion-input type="text" placeholder="Cargo" [(ngModel)]="form.cargo"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Data de nascimento</ion-label>
+            <ion-input type="date" placeholder="Data" [(ngModel)]="form.data"></ion-input>
+          </ion-item>
+        </ion-item>
+        <ion-item>
+          <ion-item>
+            <ion-label position="stacked">Endereco</ion-label>
+            <ion-input type="text" placeholder="Endereco" [(ngModel)]="form.endereco"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Cidade</ion-label>
+            <ion-input type="text" placeholder="Cidade" [(ngModel)]="form.cidade"></ion-input>
+          </ion-item>
+        </ion-item>
+        <ion-item>
+          <ion-item>
+            <ion-label position="stacked">Cep</ion-label>
+            <ion-input type="text" placeholder="Cep" [(ngModel)]="form.cep"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Pais</ion-label>
+            <ion-input type="text" placeholder="Pais" [(ngModel)]="form.pais"></ion-input>
+          </ion-item>
+        </ion-item>
+        <ion-item>
+          <ion-item>
+            <ion-label position="stacked">Fone</ion-label>
+            <ion-input type="text" placeholder="Fone" [(ngModel)]="form.fone"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Salario</ion-label>
+            <ion-input type="text" placeholder="Salario" [(ngModel)]="form.salario"></ion-input>
+          </ion-item>
+        </ion-item>
+        <ion-item>
+          <ion-button (click) = "inserirFuncionario()">
+            Salvar
+          </ion-button>
+        </ion-item>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

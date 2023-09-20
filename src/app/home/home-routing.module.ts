@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home.page';
+import { ModalController } from '@ionic/angular';
 
 const routes: Routes = [
   {
