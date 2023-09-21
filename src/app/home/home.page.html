@@ -1,174 +1,173 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      <ion-button id="open-modal2" (click) = "limparForm()">
-        Inserir Funcionário
-      </ion-button>
+      Blank
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-row>
-    <ion-col>
-      <ion-list>
-        <ion-item>
-          Nome
+
+  <!-- FORMULÁRIO CRIAR CONTA -->
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="6">
+      <form #criarContaForm="ngForm" (ngSubmit)="criarConta(criarContaForm.value)">
+        <ion-item lines="none">
+          <ion-label>Criar Conta</ion-label>
         </ion-item>
-        <ng-container *ngFor="let funcionario of this.funcionarios">
-          <ion-item>
-            <ion-label>
-              {{funcionario.Nome}} - {{ funcionario.Cargo }}
-            </ion-label>
-            <ion-button color="danger" (click)="remover(funcionario.CodFun)">
-              <ion-icon name="trash-outline"></ion-icon>
-            </ion-button>
-            <ion-button id="open-modal" (click)="pegarDados(funcionario.CodFun)">
-              <ion-icon name="pencil-outline"></ion-icon>
-            </ion-button>
-          </ion-item>
-        </ng-container>
-      </ion-list>
+        <ion-item>
+          <ion-input label="Usuário" name="email" ngModel type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Senha" name="password" ngModel type="password"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-button color="light" slot="start" routerLink="/home">Voltar</ion-button>
+          <ion-button color="light" slot="end" type="submit">Cadastrar</ion-button>
+        </ion-item>
+      </form>
     </ion-col>
   </ion-row>
-  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-button (click)="cancel()">Fechar</ion-button>
-          </ion-buttons>
-          <ion-title>Editar Funcionario</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <ion-item>
-          <ion-item>
-            <ion-label position="stacked">Nome</ion-label>
-            <ion-input type="text" placeholder="Nome" [(ngModel)]="form.nome"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Sobrenome</ion-label>
-            <ion-input type="text" placeholder="Sobrenome" [(ngModel)]="form.sobrenome"></ion-input>
-          </ion-item>
+
+<!-- FORMULÁRIO DE LOGIN -->
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="6">
+      <form #loginForm="ngForm" (ngSubmit)="realizarLogin(loginForm.value)">
+        <ion-item lines="none">
+          <ion-label>Login</ion-label>
         </ion-item>
         <ion-item>
-          <ion-item>
-            <ion-label position="stacked">Cargo</ion-label>
-            <ion-input type="text" placeholder="Cargo" [(ngModel)]="form.cargo"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Data de nascimento</ion-label>
-            <ion-input type="date" placeholder="Data" [(ngModel)]="form.data"></ion-input>
-          </ion-item>
+          <ion-input label="Usuário" name="email" ngModel type="text"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-item>
-            <ion-label position="stacked">Endereco</ion-label>
-            <ion-input type="text" placeholder="Endereco" [(ngModel)]="form.endereco"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Cidade</ion-label>
-            <ion-input type="text" placeholder="Cidade" [(ngModel)]="form.cidade"></ion-input>
-          </ion-item>
+          <ion-input label="Senha" name="password" ngModel type="password"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-item>
-            <ion-label position="stacked">Cep</ion-label>
-            <ion-input type="text" placeholder="Cep" [(ngModel)]="form.cep"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Pais</ion-label>
-            <ion-input type="text" placeholder="Pais" [(ngModel)]="form.pais"></ion-input>
-          </ion-item>
-        </ion-item>
-        <ion-item>
-          <ion-item>
-            <ion-label position="stacked">Fone</ion-label>
-            <ion-input type="text" placeholder="Fone" [(ngModel)]="form.fone"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Salario</ion-label>
-            <ion-input type="text" placeholder="Salario" [(ngModel)]="form.salario"></ion-input>
-          </ion-item>
-        </ion-item>
-        <ion-item>
-          <ion-button (click) = "atualizarFuncionario()">
-            Salvar
+        <ion-item lines="none">
+          <ion-button color="light" slot="end" type="submit">
+            <ng-container *ngIf="this._authenticate.isLoading">
+              <ion-spinner></ion-spinner>
+            </ng-container>
+            <ng-container *ngIf="!this._authenticate.isLoading">
+              Login
+            </ng-container>
           </ion-button>
         </ion-item>
+      </form>
+    </ion-col>
+  </ion-row>
 
-      </ion-content>
-    </ng-template>
-  </ion-modal>
-  <ion-modal trigger="open-modal2" (willDismiss)="onWillDismiss($event)">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-button (click)="cancel()">Fechar</ion-button>
-          </ion-buttons>
-          <ion-title>Cadastrar Funcionario</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <ion-item>
-          <ion-item>
-            <ion-label position="stacked">Nome</ion-label>
-            <ion-input type="text" placeholder="Nome" [(ngModel)]="form.nome"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Sobrenome</ion-label>
-            <ion-input type="text" placeholder="Sobrenome" [(ngModel)]="form.sobrenome"></ion-input>
-          </ion-item>
+  
+  <!-- FORMULÁRIO PARA INSERIR UM NOVO ALUNO -->
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="6">
+      <form #inserirAlunoForm="ngForm" (ngSubmit)="inserirAluno(inserirAlunoForm.value)">
+        <ion-item lines="none">
+          <ion-label>Inserir Novo Aluno</ion-label>
         </ion-item>
         <ion-item>
-          <ion-item>
-            <ion-label position="stacked">Cargo</ion-label>
-            <ion-input type="text" placeholder="Cargo" [(ngModel)]="form.cargo"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Data de nascimento</ion-label>
-            <ion-input type="date" placeholder="Data" [(ngModel)]="form.data"></ion-input>
-          </ion-item>
+          <ion-input label="Usuário" name="nome" ngModel type="text"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-item>
-            <ion-label position="stacked">Endereco</ion-label>
-            <ion-input type="text" placeholder="Endereco" [(ngModel)]="form.endereco"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Cidade</ion-label>
-            <ion-input type="text" placeholder="Cidade" [(ngModel)]="form.cidade"></ion-input>
-          </ion-item>
+        <ion-item lines="none">
+          <ion-button color="light" slot="end" type="submit">Inserir Aluno</ion-button>
         </ion-item>
-        <ion-item>
-          <ion-item>
-            <ion-label position="stacked">Cep</ion-label>
-            <ion-input type="text" placeholder="Cep" [(ngModel)]="form.cep"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Pais</ion-label>
-            <ion-input type="text" placeholder="Pais" [(ngModel)]="form.pais"></ion-input>
-          </ion-item>
-        </ion-item>
-        <ion-item>
-          <ion-item>
-            <ion-label position="stacked">Fone</ion-label>
-            <ion-input type="text" placeholder="Fone" [(ngModel)]="form.fone"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Salario</ion-label>
-            <ion-input type="text" placeholder="Salario" [(ngModel)]="form.salario"></ion-input>
-          </ion-item>
-        </ion-item>
-        <ion-item>
-          <ion-button (click) = "inserirFuncionario()">
-            Salvar
-          </ion-button>
-        </ion-item>
+      </form>
+    </ion-col>
+  </ion-row>
 
-      </ion-content>
-    </ng-template>
-  </ion-modal>
+
+  <!-- LISTAR TODOS ALUNOS -->
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="6">
+      <ion-item lines="none">
+        <ion-button color="light" slot="end" (click)="listarAlunos()">Listar Alunos</ion-button>
+      </ion-item>
+      <ng-container *ngFor="let aluno of this.alunos">
+        <h1>Nome: {{ aluno['nome'] }}</h1>
+        <h1>Idade: {{ aluno['idade'] }}</h1>
+      </ng-container>
+    </ion-col>
+  </ion-row>
+
+
+  <!-- FORMULÁRIO PARA REMOVER ALUNO -->
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="6">
+      <ng-container *ngFor="let aluno of this.alunos">
+        <form (ngSubmit)="removerAluno(aluno)">
+          <ion-item>
+            <ion-label>Nome do Aluno: {{ aluno['nome'] }}</ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-button color="light" slot="end" type="submit">Remover Aluno</ion-button>
+          </ion-item>
+        </form>
+      </ng-container>
+    </ion-col>
+  </ion-row>
+
+
+   <!-- FORMULÁRIO PARA CONSULTAR UM ALUNO -->
+   <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="6">
+      <form #consultarForm="ngForm" (ngSubmit)="consultarAluno(consultarForm.value)">
+        <ion-item lines="none">
+          <ion-label>Consultar Aluno</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Usuário" name="nome" ngModel type="text"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-button color="light" slot="end" type="submit">Consultar</ion-button>
+        </ion-item>
+      </form>
+    </ion-col>
+  </ion-row>
+
+
+     <!-- FORMULÁRIO ATUALIZAR UM ALUNO -->
+     <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-lg="6">
+        <form #atualizarForm="ngForm" (ngSubmit)="atualizarDadosAluno(atualizarForm.value)">
+          <ion-item lines="none">
+            <ion-label>Atualizar Aluno</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Usuário" name="nome" ngModel type="text"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ng-container *ngIf="this.aluno.id == null">  
+              <ion-button color="light" slot="end" type="submit">Consultar</ion-button>
+            </ng-container>
+            <ng-container *ngIf="this.aluno.id != null">  
+              <ion-button color="light" slot="end" type="submit">Atualizar</ion-button>
+            </ng-container>
+          </ion-item>
+        </form>
+      </ion-col>
+    </ion-row>
+
+
+    <!-- TEMPLATE PARA ENVIAR ARQUIVO PARA O FIREBASE -->
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-lg="6">
+        <ion-item>
+          <input type="file" value="Upload" (change)="memorizarArquivo($event)">
+        </ion-item>
+        <ion-item>
+          <ion-button color="medium" slot="end" size="small" (click)="fazerUpload()">Enviar Tarefa</ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-lg="6">
+        <ion-item>
+          <img src="https://firebasestorage.googleapis.com/v0/b/projetoexemplo-e640c.appspot.com/o/minha_imagem.jpeg?alt=media&token=5b63e63b-081b-493b-981d-4ff73b18b14e" alt="">
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+
+  
+
 </ion-content>
