@@ -8,14 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class FuncionariosPage {
 
   constructor(){
-    this.getFuncionarios()
+    this.listarFuncionarios()
   }
 
-  isLoading: boolean = false
   funcionarios: any = []
 
   form: any = {
-    codigo: '',
     nome: '',
     sobrenome: '',
     cidade: '',
@@ -26,27 +24,28 @@ export class FuncionariosPage {
     cep: '',
     pais: '',
     salario: '',
+    codigo: '',
   }
   
   action: string = 'Inserir'
 
-  choice: string = ''
+  opcao: string = ''
   searchWord: string = ''
+  isToastOpen = false;
 
-  getFuncionarios(){
-    this.isLoading = true
+  setToastOpen(isOpen: boolean) {
+    this.isToastOpen = isOpen;
+  }
+  listarFuncionarios(){
     fetch('http://localhost/api/funcionarios/listar.php')
     .then(res => res.json())
     .then(dados => { this.funcionarios = dados['funcionarios'] })
     .catch(error => { console.log(error) })
     .finally(()=>{
-      this.isLoading = false
-      console.log('Funcionol!')
     })
   }
   
   removerFuncionario(CodFun: any){
-    this.isLoading = true
     fetch('http://localhost/api/funcionarios/remover.php', {
       method: 'POST',
       headers: {
@@ -59,18 +58,15 @@ export class FuncionariosPage {
     .then(dados => { console.log(dados) })
     .catch(error => { console.log(error) }) 
     .finally(() => {
-      this.getFuncionarios()
-      this.isLoading = false
-      console.log('Funcionol!')
+      this.listarFuncionarios()
     })
   }
 
-    sendData(data: any){
+    inserirFuncionario(data: any){
       data.preventDefault()
 
       console.log(this.form.nome)
 
-      this.isLoading = true
       if(this.action == 'Inserir'){
         fetch('http://localhost/api/funcionarios/inserir.php', {
           method: 'POST',
@@ -84,9 +80,8 @@ export class FuncionariosPage {
         .then(dados => { console.log(dados) })
         .catch(error => { console.log(error) }) 
         .finally(() => {
-          this.getFuncionarios()
-          this.isLoading = false
-          console.log('Funcionol!')
+          this.listarFuncionarios()
+  
         })
       }else{
         fetch('http://localhost/api/funcionarios/update.php', {
@@ -101,15 +96,13 @@ export class FuncionariosPage {
         .then(dados => { console.log(dados) })
         .catch(error => { console.log(error) }) 
         .finally(() => {
-          this.getFuncionarios()
-          this.isLoading = false
-          console.log('Funcionol!')
+          this.listarFuncionarios()
         })
       }
     }
 
 
-    clearForm(){
+    limparModal(){
       this.form.nome = ''
       this.form.sobrenome = ''
       this.form.cargo = ''
@@ -122,22 +115,21 @@ export class FuncionariosPage {
       this.form.salario = ''
     }
 
-  // Modal Inserir funcionarios
-  isModalOpenInserir = false;
+  isModalOpen= false;
 
-  setOpenInserir(isOpen: boolean, codigo: number | null) {
-    this.isModalOpenInserir = isOpen;
+  openModal(isOpen: boolean, codigo: number | null) {
+    this.isModalOpen= isOpen;
     console.log(codigo)
     this.action = 'Inserir'
     if(codigo){
-      this.getData(codigo)
+      this.pegarDadosFuncionario(codigo)
       this.action = 'Atualizar'
     }
-    this.clearForm()
+    this.limparModal()
   }
 
 
-  getData(codigo: number){
+  pegarDadosFuncionario(codigo: number){
     fetch('http://localhost/api/funcionarios/getUpdate.php?codigo=' + codigo, {
       method: 'GET',
       headers: {
@@ -161,14 +153,9 @@ export class FuncionariosPage {
       this.form.salario = dados.funcionarios[0].Salario
     })
     .catch(error => { console.log(error) }) 
-    .finally(() => {
-      this.isLoading = false
-      console.log('Funcionol!')
-    })
   }
 
-  // Botao de Consultar por Nome, Cargo, Cidade e Telefone
-  searchData(){
+  pesquisar(){
     fetch('http://localhost/api/funcionarios/pesquisar.php', {
       method: 'POST',
       headers: {
@@ -176,17 +163,19 @@ export class FuncionariosPage {
       },
       body: JSON.stringify({
         word: this.searchWord,
-        choice: this.choice
+        opcao: this.opcao
       }),
 
     })
     .then(res => res.json())
-    .then(dados => { this.funcionarios = dados['funcionarios'] })
+    .then(dados => {
+      if(dados['error'] ) {
+        this.setToastOpen(true)
+      }
+      else this.funcionarios = dados['funcionarios'] 
+
+      })
     .catch(error => { console.log(error) }) 
-    .finally(() => {
-      this.isLoading = false
-      console.log('Funcionol!')
-    })
   }
 
 }

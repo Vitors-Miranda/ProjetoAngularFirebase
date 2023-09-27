@@ -3,13 +3,11 @@
     require '../conn.php';
     require '../cors.php';
 
-    // linhas para a requisicao dos dados para o botao de remover funcionarios
     $data = file_get_contents("php://input");
 
     $decode_data = json_decode($data);
 
     if(!empty ($decode_data)){
-        // Linha sql a ser executada
         $sql = "UPDATE Funcionarios SET Sobrenome = ?, Nome = ?, Cargo = ?, DataNasc = ?, Endereco = ?, Cidade = ?, CEP = ?, Pais = ?, Fone = ?, Salario = ? WHERE CodFun = ?";
 
         $stmt = $connection -> prepare($sql);
@@ -27,14 +25,11 @@
             $decode_data->codigo
         ];
 
-        // Verifica se a linha SQL foi executada
         if($stmt -> execute($allValues) === true){
-            // Caso tenha sido, escreve essa mensagem
             $response = [
                 'message' => 'Inserido com success'
             ];
         }else{
-            // Caso não escreve o erro
             $response = [
                 'message' => $connection -> error
             ];
