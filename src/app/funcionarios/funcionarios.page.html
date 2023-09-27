@@ -31,51 +31,51 @@
           <form (submit)="inserirFuncionario($event)">
             <ion-row>
               <ion-col>
-                <ion-input #input [(ngModel)]="form.nome" placeholder="Nome" name="nome"></ion-input>
+                <ion-input [(ngModel)]="form.nome" placeholder="Nome" name="nome"></ion-input>
               </ion-col>
               <ion-col>
-                <ion-input #input [(ngModel)]="form.sobrenome" placeholder="Sobrenome" name="sobrenome"></ion-input>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-input #input [(ngModel)]="form.cargo" placeholder="Cargo" name="cargo"></ion-input>
+                <ion-input [(ngModel)]="form.sobrenome" placeholder="Sobrenome" name="sobrenome"></ion-input>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
-                <ion-input type="date" #input [(ngModel)]="form.dataNasc" placeholder="Data de Nascimento"
+                <ion-input [(ngModel)]="form.cargo" placeholder="Cargo" name="cargo"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-input type="date" [(ngModel)]="form.dataNasc" placeholder="Data de Nascimento"
                   name="dataNasc"></ion-input>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
-                <ion-input #input [(ngModel)]="form.endereco" placeholder="Endereço" name="endereco"></ion-input>
+                <ion-input [(ngModel)]="form.endereco" placeholder="Endereço" name="endereco"></ion-input>
               </ion-col>
               <ion-col>
-                <ion-input #input [(ngModel)]="form.cidade" placeholder="Cidade" name="cidade"></ion-input>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-input #input [(ngModel)]="form.cep" placeholder="CEP" name="cep"></ion-input>
-              </ion-col>
-              <ion-col>
-                <ion-input #input [(ngModel)]="form.pais" placeholder="País" name="pais"></ion-input>
+                <ion-input [(ngModel)]="form.cidade" placeholder="Cidade" name="cidade"></ion-input>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
-                <ion-input #input [(ngModel)]="form.fone" placeholder="Telefone" name="fone"></ion-input>
+                <ion-input [(ngModel)]="form.cep" placeholder="CEP" name="cep"></ion-input>
               </ion-col>
               <ion-col>
-                <ion-input #input [(ngModel)]="form.salario" placeholder="Salario" name="salario"></ion-input>
+                <ion-input [(ngModel)]="form.pais" placeholder="País" name="pais"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-input [(ngModel)]="form.fone" placeholder="Telefone" name="fone"></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-input [(ngModel)]="form.salario" placeholder="Salario" name="salario"></ion-input>
               </ion-col>
             </ion-row>
 
             <ion-row class="ion-justify-content-center">
               <ion-col>
-                <ion-button type="submit">Enviar</ion-button>
+                <ion-button type="submit">Salvar</ion-button>
               </ion-col>
             </ion-row>
           </form>
@@ -84,7 +84,7 @@
       </ng-template>
     </ion-modal>
     <ion-col size="3">
-      <ion-input #input [(ngModel)]="searchWord" placeholder="Pesquisar" name="pesquisar"
+      <ion-input [(ngModel)]="searchWord" placeholder="Pesquisar" name="pesquisar"
         (keyup)="pesquisar()"></ion-input>
     </ion-col>
     <ion-col size="7" ion-justify-content-center>

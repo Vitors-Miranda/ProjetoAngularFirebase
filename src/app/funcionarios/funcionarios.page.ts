@@ -29,7 +29,7 @@ export class FuncionariosPage {
   
   action: string = 'Inserir'
 
-  opcao: string = ''
+  opcao: string = 'nome'
   searchWord: string = ''
   isToastOpen = false;
 
@@ -81,7 +81,7 @@ export class FuncionariosPage {
         .catch(error => { console.log(error) }) 
         .finally(() => {
           this.listarFuncionarios()
-  
+          
         })
       }else{
         fetch('http://localhost/api/funcionarios/update.php', {
@@ -99,6 +99,7 @@ export class FuncionariosPage {
           this.listarFuncionarios()
         })
       }
+      this.openModal(false, null)
     }
 
 
