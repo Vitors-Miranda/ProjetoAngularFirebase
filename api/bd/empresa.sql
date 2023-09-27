@@ -95,11 +95,11 @@ INSERT INTO Fornecedores(Empresa,Contato,Cargo,Endereco,Cidade,CEP,Pais) VALUES 
 INSERT INTO Fornecedores(Empresa,Contato,Cargo,Endereco,Cidade,CEP,Pais) VALUES ('New Orleans Cajun Delights','Shelley Burke','Administrador de Pedidos','P.O. Box 78934','New Orleans','70117','EUA');
 INSERT INTO Fornecedores(Empresa,Contato,Cargo,Endereco,Cidade,CEP,Pais) VALUES ('Grandma Kelly s Homestead','Regina Murphy','Representante de Vendas','707 Oxford Rd.','Ann Arbor','48104','EUA');
 INSERT INTO Fornecedores(Empresa,Contato,Cargo,Endereco,Cidade,CEP,Pais) VALUES ('Tokyo Traders','Yoshi Nagase','Gerente de Marketing','9-8 SekimaiMusashino-shi','Tokyo','100','Japao');
-INSERT INTO Fornecedores(Empresa,Contato,Cargo,Endereco,Cidade,CEP,Pais) VALUES ('Cooperativa de Quesos  Las Cabras ','Antonio del Valle Saavedra ','Administrador de ExportaÃ§Ã£o','Calle del Rosal 4','Oviedo','33007','Espanha');
-INSERT INTO Fornecedores(Empresa,Contato,Cargo,Endereco,Cidade,CEP,Pais) VALUES ('Mayumi s','Mayumi Ohno','Representante de Marketing','92 Setsuko Chuo-ku','Osaka','545','JapÃ£o');
+INSERT INTO Fornecedores(Empresa,Contato,Cargo,Endereco,Cidade,CEP,Pais) VALUES ('Cooperativa de Quesos  Las Cabras ','Antonio del Valle Saavedra ','Administrador de Exportação','Calle del Rosal 4','Oviedo','33007','Espanha');
+INSERT INTO Fornecedores(Empresa,Contato,Cargo,Endereco,Cidade,CEP,Pais) VALUES ('Mayumi s','Mayumi Ohno','Representante de Marketing','92 Setsuko Chuo-ku','Osaka','545','Japão');
 INSERT INTO Fornecedores(Empresa,Contato,Cargo,Endereco,Cidade,CEP,Pais) VALUES ('Pavlova, Ltd.','Ian Devling','Gerente de Marketing','74 Rose St.Moonie Ponds','Melbourne','3058','Australia');
 INSERT INTO Fornecedores(Empresa,Contato,Cargo,Endereco,Cidade,CEP,Pais) VALUES ('Specialty Biscuits, Ltd.','Peter Wilson','Representante de Vendas','29 King s Way','Manchester','M14 GSD','Reino Unido');
-INSERT INTO Fornecedores(Empresa,Contato,Cargo,Endereco,Cidade,CEP,Pais) VALUES ('PB Knckebrd AB','Lars Peterson','Agente de Vendas','Kaloadagatan 13','Gateborg','S-345 67','SuÃ©cia');
+INSERT INTO Fornecedores(Empresa,Contato,Cargo,Endereco,Cidade,CEP,Pais) VALUES ('PB Knckebrd AB','Lars Peterson','Agente de Vendas','Kaloadagatan 13','Gateborg','S-345 67','Suécia');
 INSERT INTO Fornecedores(Empresa,Contato,Cargo,Endereco,Cidade,CEP,Pais) VALUES ('Refrescos Americanas LTDA','Carlos Diaz','Gerente de Marketing','Av. das Americanas 12.890','Sao Paulo','5442','Brasil');
 INSERT INTO Fornecedores(Empresa,Contato,Cargo,Endereco,Cidade,CEP,Pais) VALUES ('Heli Saawaren GmbH & Co. KG','Petra Winkler','Gerente de Vendas','Tiergartenstraae 5','Berlin','10785','Alemanha');
 INSERT INTO Fornecedores(Empresa,Contato,Cargo,Endereco,Cidade,CEP,Pais) VALUES ('Plutzer Lebensmittelgroamarkte AG','Martin Bein','Ger. Marketing Internacional','Bogenallee 51','Frankfurt','60439','Alemanha');
